@@ -13,21 +13,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.amber,
-          fontFamily: 'Quicksand',
-          textTheme: TextTheme(
-              headline6: TextStyle(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: TextTheme(
+          button: TextStyle(
+            color: Colors.white,
+          ),
+          headline6: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 16,
             fontWeight: FontWeight.bold,
-          )),
-          appBarTheme: AppBarTheme(
-              titleTextStyle: TextStyle(
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
             fontFamily: 'Open Sans',
             fontSize: 20,
             fontWeight: FontWeight.bold,
-          ))),
+          ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -62,12 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
     );
     setState(() {
       _userTransactions.add(newTx);
