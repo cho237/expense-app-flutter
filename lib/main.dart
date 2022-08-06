@@ -5,7 +5,7 @@ import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/transaction_list.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home: MyApp()));
 
 class MyApp extends StatelessWidget {
   @override
@@ -29,8 +29,10 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'Open Sans',
-            fontSize: 20 * MediaQuery.of(context).textScaleFactor ,//text size change if user changes text size in his settings
-            fontWeight: FontWeight.bold,                            // textScaleFactor by default is 1
+            fontSize: 20 *
+                MediaQuery.of(context)
+                    .textScaleFactor, //text size change if user changes text size in his settings
+            fontWeight: FontWeight.bold, // textScaleFactor by default is 1
           ),
         ),
       ),
