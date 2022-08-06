@@ -22,15 +22,15 @@ class MyApp extends StatelessWidget {
           ),
           headline6: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 16,
+            fontSize: 16 * MediaQuery.of(context).textScaleFactor,
             fontWeight: FontWeight.bold,
           ),
         ),
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'Open Sans',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontSize: 20 * MediaQuery.of(context).textScaleFactor ,//text size change if user changes text size in his settings
+            fontWeight: FontWeight.bold,                            // textScaleFactor by default is 1
           ),
         ),
       ),
@@ -98,26 +98,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Personal Expenses',
-          style: TextStyle(fontFamily: 'Open Sans'),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => _startAddNewTransaction(context),
-            icon: Icon(Icons.add),
-          )
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'Personal Expenses',
+        style: TextStyle(fontFamily: 'Open Sans'),
       ),
+      actions: [
+        IconButton(
+          onPressed: () => _startAddNewTransaction(context),
+          icon: Icon(Icons.add),
+        )
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction)
+            Container(
+              height: (MediaQuery.of(context).size.height * 0.4 -
+                      MediaQuery.of(context).padding.top) -
+                  appBar.preferredSize.height,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height * 0.6 -
+                      MediaQuery.of(context).padding.top) -
+                  appBar.preferredSize.height,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            )
           ],
         ),
       ),
