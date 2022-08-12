@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../widgets/adaptive_elevatedButton.dart';
 import 'package:intl/intl.dart';
@@ -33,17 +32,16 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   void didUpdateWidget(covariant NewTransaction oldWidget) {
-        print("didUpdateWidget");
+    print("didUpdateWidget");
 
     super.didUpdateWidget(oldWidget);
   }
-  
+
   @override
   void dispose() {
     print("disposeWidget");
     super.dispose();
   }
-
 
   void _submitData() {
     if (_amountController.text.isEmpty) {
